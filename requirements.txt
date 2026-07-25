@@ -5,6 +5,6 @@ myst-parser
 sphinx-copybutton
 sphinx-autodoc-typehints
 
-# Note: the pytc package is NOT pip-installed.  conf.py adds the repo root
-# to sys.path and mocks heavy runtime deps (JAX, PySCF, flax, …) so the
-# docs build works without a GPU stack.
+# The workflow installs pytc-qc separately with --no-deps.  Missing heavy
+# runtime dependencies are mocked by conf.py so the docs build needs no GPU
+# stack.

@@ -4,13 +4,9 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os
-import sys
 
-# -- Path setup --------------------------------------------------------------
-# Add the project root so autodoc can find the pytc package
-sys.path.insert(0, os.path.abspath(".."))
-
-# Tell pytc to skip heavy startup logging (JAX device detection, etc.)
+# The standalone docs build installs the public pytc-qc distribution.
+# Skip heavy startup logging (JAX device detection, etc.) during autodoc.
 os.environ["SPHINX_AUTODOC_BUILD"] = "1"
 
 # Speed up JAX initialisation – CPU-only, no GPU search, no XLA cache
@@ -36,7 +32,13 @@ extensions = [
 ]
 
 templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = [
+    "_build",
+    ".venv",
+    "README.md",
+    "Thumbs.db",
+    ".DS_Store",
+]
 
 # Suppress harmless duplicate-object warnings from @dataclass inheritance
 # (child classes re-document parent attributes in their docstrings)
@@ -103,10 +105,10 @@ html_theme = "furo"
 html_title = "PyTC"
 html_logo = "_static/pytc-logo.svg"
 html_static_path = ["_static"]
-html_baseurl = "https://nickirk.github.io/pytc/"
+html_baseurl = "https://nickirk.github.io/pytc-docs/"
 
 html_theme_options = {
-    "source_repository": "https://github.com/nickirk/pytc",
+    "source_repository": "https://github.com/nickirk/pytc-docs",
     "source_branch": "main",
-    "source_directory": "docs/",
+    "source_directory": "",
 }

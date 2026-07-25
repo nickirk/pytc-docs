@@ -1,0 +1,5 @@
+_build/
+.venv/
+api/generated/
+.DS_Store
+Thumbs.db
