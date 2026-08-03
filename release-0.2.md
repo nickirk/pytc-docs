@@ -9,7 +9,7 @@
   free device and host memory (cgroup-aware, reclaimable-cache accounting,
   fail-closed when memory is unmeasurable). Working-set panels with
   double-buffered prefetch and a halving retry on device out-of-memory.
-- **`pytc/df` package**: the previous `pytc.df` module is now a package with
+- **`pytc.df` package**: the previous `pytc.df` module is now a package with
   the same public API. `pytc.df.thc` adds the panelled NumPy and JAX robust
   DF-THC fits and sandwiches, plus X-store layout helpers: stores can carry
   an optional rank-major twin dataset (`X_rm`) giving contiguous panel reads;
