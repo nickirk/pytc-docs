@@ -28,7 +28,7 @@ jobs:
       - name: Install documentation dependencies
         run: |
           python -m pip install -r requirements.txt
-          python -m pip install --no-deps pytc-qc==0.1.0
+          python -m pip install --no-deps "git+https://github.com/nickirk/pytc.git@main"
 
       - name: Build documentation
         env:

@@ -9,6 +9,7 @@ Python TransCorrelation package
 installation
 quickstart
 gpu-memory
+release-0.2
 ```
 
 ```{toctree}
