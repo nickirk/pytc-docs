@@ -18,7 +18,27 @@ os.environ.setdefault("JAX_ENABLE_X64", "1")
 project = "PyTC"
 copyright = "2025, Ke Liao"
 author = "Ke Liao"
-release = "0.1.0"
+
+
+def _pytc_version():
+    # Version comes from the installed distribution, never hardcoded.
+    # The build must install pytc-qc from the repo (see docs.yml); PyPI is
+    # always one release behind.  PYTC_DOCS_EXPECT_VERSION makes deploys
+    # fail loudly if the resolved version is not the one being announced.
+    from importlib.metadata import PackageNotFoundError, version
+    try:
+        resolved = version("pytc-qc")
+    except PackageNotFoundError:
+        resolved = "0.0.0+dev"
+    expected = os.environ.get("PYTC_DOCS_EXPECT_VERSION")
+    if expected and resolved != expected:
+        raise RuntimeError(
+            f"docs build resolved pytc-qc {resolved!r}, expected {expected!r} "
+            "-- install pytc-qc from the repo ref being documented")
+    return resolved
+
+
+release = _pytc_version()
 
 # -- General configuration ---------------------------------------------------
 extensions = [
