@@ -4,6 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 import os
+from datetime import date
 
 # The standalone docs build installs the public pytc-qc distribution.
 # Skip heavy startup logging (JAX device detection, etc.) during autodoc.
@@ -16,7 +17,7 @@ os.environ.setdefault("JAX_ENABLE_X64", "1")
 
 # -- Project information -----------------------------------------------------
 project = "PyTC"
-copyright = "2025, Ke Liao"
+copyright = f"{date.today().year}, Ke Liao"
 author = "Ke Liao"
 
 
