@@ -29,8 +29,8 @@ the relevant env-var override so you know exactly what to set.
 
 ## Environment-variable overrides
 
-Three variables let you override the auto-sizing.
-**All are optional — omit them to get fully automatic behaviour.**
+Four variables control memory sizing or the optional compilation cache.
+**All are optional — omit them to get fully automatic behavior.**
 
 ### `PYTC_GPU_MAX_MEMORY_MB`
 
@@ -66,6 +66,20 @@ per-tile peak.
 export PYTC_SOLVER_BLK=64   # value used for H10/QZ-FNO acceptance runs on an 80 GB A100
 ```
 
+### `PYTC_XLA_CACHE_DIR`
+
+Absolute directory for the opt-in persistent JAX/XLA compilation cache. Set
+it before starting Python so repeated runs can reuse compiled GPU programs:
+
+```bash
+export PYTC_XLA_CACHE_DIR=/project/my-group/pytc-xla-cache
+```
+
+The path must be absolute. PyTC deliberately does not choose a default cache
+directory, so it never creates an implicit cache in a user's home directory.
+CPU-only runs skip this cache because compiled CPU artifacts are not portable
+across microarchitectures.
+
 ## When to use the overrides
 
 | Situation | Recommended knob |
@@ -75,6 +89,7 @@ export PYTC_SOLVER_BLK=64   # value used for H10/QZ-FNO acceptance runs on an 80
 | CCSD vvvv/vovv OOM on a small GPU or large nkeep | `PYTC_SOLVER_BLK` |
 | Avoid shape-recompile churn (you already know the right size) | `PYTC_SOLVER_BLK` or `PYTC_PANEL_BLK` |
 | Genuine OOM mid-run (`RuntimeError` citing one of these) | the knob named in the error message |
+| Reuse compiled GPU programs across repeated runs | `PYTC_XLA_CACHE_DIR` |
 
 For a normal run on a dedicated GPU — including large QZ-basis xTC-CCSD
 calculations with nkeep up to 300 on an 80 GB A100 — no override is
