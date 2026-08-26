@@ -29,7 +29,7 @@ jobs:
         run: |
           python -m pip install -r requirements.txt
           # Pin to the tag of the release being documented (fails closed pre-tag).
-          python -m pip install --no-deps "git+https://github.com/nickirk/pytc.git@v0.2.0"
+          python -m pip install --no-deps "git+https://github.com/nickirk/pytc.git@v0.2.1"
 
       - name: Build documentation
         env:
@@ -37,6 +37,7 @@ jobs:
           JAX_PLATFORMS: cpu
           XLA_FLAGS: "--xla_force_host_platform_device_count=1"
           JAX_ENABLE_X64: "1"
+          PYTC_DOCS_EXPECT_VERSION: "0.2.1"
         run: sphinx-build -b html . _build/html
 
       - name: Configure GitHub Pages

@@ -8,7 +8,10 @@ Python TransCorrelation package
 
 installation
 quickstart
+examples
+isdf-efficiency
 gpu-memory
+release-0.2.1
 release-0.2
 ```
 
@@ -38,7 +41,7 @@ contributing
 - **Multi-GPU acceleration** via JAX sharding for both VMC sampling and integral evaluation — near-linear strong scaling across devices with no user-side code changes.
 - **Transcorrelated integrals**: K1, K2, K3 two-body and xTC approximated three-body integrals — fully GPU-resident contractions, never materialising the 3-body tensor explicitly.
 - **Interpolative Separable Density Fitting (ISDF)** for the xTC kernel — empirical $T \propto n_{\mathrm{orb}}^{1.76}$ scaling (see plot above) pushes routine calculations past 1200 orbitals on a single B200, which is beyond what standard quantum chemistry solvers can handle.
+- **Validated ISDF efficiency controls**: deterministic blocked pivot selection, exact auxiliary recovery of K1/K3, and an opt-in rank-$M$ orbital Tucker representation whose dedicated solver contracts T2 directly with the factors.
 - **Modular Jastrow factors**: Boys-Handy, Nuclear Cusp, Neural Network (EE/EN/EEN), REXP, Polynomial, and Composite — share the same JIT-compiled evaluation path, so adding a new factor adds zero per-step overhead.
 - **VMC-based Jastrow optimization** with second-order Newton and first-order ML optimizers (Adam) — second-order steps reach the same accuracy in an order of magnitude fewer iterations than SGD.
 - **PySCF interoperability with JAX-native CCSD**: Builds on PySCF mean-field objects and molecular data, then runs xTC-CCSD with PyTC's in-house JAX solver
-

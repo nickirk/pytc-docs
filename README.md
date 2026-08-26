@@ -15,8 +15,8 @@ became an independent repository.
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python -m pip install --no-deps pytc-qc==0.1.0
-sphinx-build -b html . _build/html
+python -m pip install --no-deps pytc-qc==0.2.1
+PYTC_DOCS_EXPECT_VERSION=0.2.1 sphinx-build -b html . _build/html
 ```
 
 Open `_build/html/index.html` after the build completes.
