@@ -30,7 +30,7 @@ the relevant env-var override so you know exactly what to set.
 ## Environment-variable overrides
 
 Four variables control memory sizing or the optional compilation cache.
-**All are optional — omit them to get fully automatic behaviour.**
+**All are optional — omit them to get fully automatic behavior.**
 
 ### `PYTC_GPU_MAX_MEMORY_MB`
 
